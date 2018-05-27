@@ -1,0 +1,8 @@
+logs/*
+!logs/
+
+phpdocker/nginx/*
+!phpdocker/nginx/test-local.conf
+
+www/*
+!www/test.local/

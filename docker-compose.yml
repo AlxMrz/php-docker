@@ -1,0 +1,39 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: "3.1"
+services:
+
+    mariadb:
+      image: mariadb:10.1
+      container_name: phpsites-mariadb
+      working_dir: /application
+      volumes:
+        - .:/application
+      environment:
+        - MYSQL_ROOT_PASSWORD=goblin
+        - MYSQL_DATABASE=mytest
+        - MYSQL_USER=myuser
+        - MYSQL_PASSWORD=myuser
+      ports:
+        - "4003:3306"
+
+    webserver:
+      image: nginx:alpine
+      container_name: phpsites-webserver
+      working_dir: /application
+      volumes:
+        - .:/application
+        - ./phpdocker/nginx/:/etc/nginx/conf.d/
+        - ./www:/var/www
+        - ./logs:/var/log/nginx
+      ports:
+       - "4000:80"
+
+    php-fpm:
+      build: phpdocker/php-fpm
+      container_name: phpsites-php-fpm
+      working_dir: /application
+      volumes:
+        - .:/application
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
