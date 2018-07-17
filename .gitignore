@@ -1,8 +1,10 @@
 logs/*
 !logs/
 
-phpdocker/nginx/*
-!phpdocker/nginx/test-local.conf
+docker/nginx/*
+!docker/nginx/test-local.conf
 
 www/*
 !www/test.local/
+nbproject/
+.idea/
