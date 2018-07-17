@@ -1,0 +1,13 @@
+#!/bin/bash
+if [[ -z $1 ]]
+then
+  echo "Destination missing. Enter available command:"
+  echo "php-fpm for local-php-fpm container"
+  echo "mariadb for local-maria container"
+  echo "nginx for local-nginx container";
+  read env
+else
+  env=$1
+fi
+
+docker exec -it local-$1 bash

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker stop local-php-fpm local-mariadb local-webserver
+
